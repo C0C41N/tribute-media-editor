@@ -1,0 +1,32 @@
+<div class="container">
+	<div class="card" [class.mat-elevation-z8]="true">
+		<mat-grid-list cols="1" rowHeight="72px">
+			<mat-grid-tile>
+				<mat-card [class.mat-elevation-z0]="true" class="panel">
+					<div class="actions">
+						<button mat-icon-button disableRipple>
+							<mat-icon>play_circle_outline</mat-icon>
+						</button>
+						<button mat-icon-button disableRipple>
+							<mat-icon>add</mat-icon>
+						</button>
+						<button mat-icon-button disableRipple>
+							<mat-icon>music_note</mat-icon>
+						</button>
+						<button mat-icon-button disableRipple>
+							<mat-icon>restore</mat-icon>
+						</button>
+						<div class="filler"></div>
+						<button mat-flat-button>Publish & Checkout</button>
+					</div>
+				</mat-card>
+			</mat-grid-tile>
+			<mat-grid-tile>
+				<mat-card [class.mat-elevation-z0]="true" class="panel"></mat-card>
+			</mat-grid-tile>
+			<mat-grid-tile>
+				<mat-card [class.mat-elevation-z0]="true" class="panel"></mat-card>
+			</mat-grid-tile>
+		</mat-grid-list>
+	</div>
+</div>

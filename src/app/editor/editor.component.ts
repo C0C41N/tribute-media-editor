@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -6,6 +6,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 	selector: 'app-editor',
 	templateUrl: './editor.component.html',
 	styleUrls: ['./editor.component.scss'],
+	encapsulation: ViewEncapsulation.None,
 })
 export class EditorComponent implements OnInit {
 	constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {

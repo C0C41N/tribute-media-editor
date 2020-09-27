@@ -10,13 +10,40 @@ $action-color: skyblue;
 
 	.main {
 		border-radius: $border-radius;
+		display: flex;
+		flex-direction: column;
 		height: 600px;
 		width: 90%;
 
 		.panel {
+			align-items: center;
 			background-color: $action-color;
 			border-radius: $border-radius $border-radius 0 0;
+			display: flex;
 			height: 72px;
+			width: 100%;
+
+			button {
+				margin: 0 15px;
+
+				.mat-icon {
+					transform: scale(2);
+					color: white;
+				}
+			}
+		}
+
+		.view {
+			flex-grow: 1;
+		}
+
+		.footer {
+			align-items: center;
+			background-color: $action-color;
+			border-radius: 0 0 $border-radius $border-radius;
+			display: flex;
+			height: 60px;
+			justify-content: center;
 			width: 100%;
 		}
 	}

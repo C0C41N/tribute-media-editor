@@ -1,0 +1,28 @@
+[debug] [2020-09-28T03:46:49.493Z] ----------------------------------------------------------------------
+[debug] [2020-09-28T03:46:49.495Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\HP Pavilion 15\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2020-09-28T03:46:49.496Z] CLI Version:   8.11.2
+[debug] [2020-09-28T03:46:49.496Z] Platform:      win32
+[debug] [2020-09-28T03:46:49.496Z] Node Version:  v12.16.1
+[debug] [2020-09-28T03:46:49.497Z] Time:          Mon Sep 28 2020 08:46:49 GMT+0500 (Pakistan Standard Time)
+[debug] [2020-09-28T03:46:49.497Z] ----------------------------------------------------------------------
+[debug] [2020-09-28T03:46:49.497Z] 
+[debug] [2020-09-28T03:46:49.505Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-09-28T03:46:49.506Z] > authorizing via signed-in user
+[debug] [2020-09-28T03:46:49.506Z] [iam] checking project editor-concept for permissions ["firebase.projects.get"]
+[debug] [2020-09-28T03:46:49.508Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/editor-concept:testIamPermissions  
+ {"permissions":["firebase.projects.get"]}
+[debug] [2020-09-28T03:46:51.151Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Mon, 28 Sep 2020 03:46:52 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1240","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-09-28T03:46:51.155Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/editor-concept  
+ 
+[debug] [2020-09-28T03:46:52.506Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Mon, 28 Sep 2020 03:46:53 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Serving from 'D:\_Projects\Tribute-Media-Editor'...
+[info] 
+[debug] [2020-09-28T03:46:52.512Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/editor-concept/webApps/-/config  
+ 
+[debug] [2020-09-28T03:46:53.648Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Mon, 28 Sep 2020 03:46:55 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  hosting: Serving hosting files from: dist {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mdist\u001b[22m"}}
+[info] +  hosting: Local server: http://localhost:5000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://localhost:5000\u001b[22m\u001b[24m"}}
+[info] i  hosting: 127.0.0.1 - - [28/Sep/2020:03:47:01 +0000] "GET / HTTP/1.1" 200 4072 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36 OPR/70.0.3728.189" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Sep/2020:03:47:01 +0000] \"GET / HTTP/1.1\" 200 4072 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36 OPR/70.0.3728.189\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Sep/2020:03:47:02 +0000] "GET /__/firebase/init.js HTTP/1.1" 200 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36 OPR/70.0.3728.189" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Sep/2020:03:47:02 +0000] \"GET /__/firebase/init.js HTTP/1.1\" 200 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36 OPR/70.0.3728.189\""}}
+[info] i  hosting: 127.0.0.1 - - [28/Sep/2020:03:47:02 +0000] "GET /favicon.ico HTTP/1.1" 304 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36 OPR/70.0.3728.189" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [28/Sep/2020:03:47:02 +0000] \"GET /favicon.ico HTTP/1.1\" 304 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36 OPR/70.0.3728.189\""}}

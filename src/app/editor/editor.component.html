@@ -1,17 +1,34 @@
 <div class="body">
 	<div class="main" [class.mat-elevation-z2]="true">
 		<div class="panel">
-			<button mat-icon-button disableRipple class="button">
-				<mat-icon>play_circle_outline</mat-icon>
+			<button
+				mat-icon-button
+				disableRipple
+				class="button"
+				(click)="clickPreview()"
+			>
+				<mat-icon [class.selected]="selected === 1"
+					>play_circle_outline</mat-icon
+				>
 			</button>
-			<button mat-icon-button disableRipple class="button">
-				<mat-icon>add</mat-icon>
+			<button mat-icon-button disableRipple class="button" (click)="clickAdd()">
+				<mat-icon [class.selected]="selected === 2">add</mat-icon>
 			</button>
-			<button mat-icon-button disableRipple class="button">
-				<mat-icon>music_note</mat-icon>
+			<button
+				mat-icon-button
+				disableRipple
+				class="button"
+				(click)="clickMusic()"
+			>
+				<mat-icon [class.selected]="selected === 3">music_note</mat-icon>
 			</button>
-			<button mat-icon-button disableRipple class="button">
-				<mat-icon>restore</mat-icon>
+			<button
+				mat-icon-button
+				disableRipple
+				class="button"
+				(click)="clickRestore()"
+			>
+				<mat-icon [class.selected]="selected === 4">restore</mat-icon>
 			</button>
 			<div style="flex-grow: 1"></div>
 			<button mat-flat-button>Publish & Checkout</button>

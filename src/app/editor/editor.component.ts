@@ -1,6 +1,6 @@
+import { BehaviorSubject } from 'rxjs';
+
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
 	selector: 'app-editor',
@@ -9,12 +9,30 @@ import { DomSanitizer } from '@angular/platform-browser';
 	encapsulation: ViewEncapsulation.None,
 })
 export class EditorComponent implements OnInit {
-	constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
-		iconRegistry.addSvgIcon(
-			'play',
-			sanitizer.bypassSecurityTrustResourceUrl('assets/icons/play-circle.svg')
-		);
+	private selectedSource = new BehaviorSubject<number>(0);
+	selected = 0;
+
+	constructor() {}
+
+	ngOnInit(): void {
+		this.selectedSource.subscribe((e) => {
+			this.selected = e;
+		});
 	}
 
-	ngOnInit(): void {}
+	clickPreview(): void {
+		this.selectedSource.next(1);
+	}
+
+	clickAdd(): void {
+		this.selectedSource.next(2);
+	}
+
+	clickMusic(): void {
+		this.selectedSource.next(3);
+	}
+
+	clickRestore(): void {
+		this.selectedSource.next(4);
+	}
 }

@@ -1,6 +1,6 @@
-import { BehaviorSubject } from 'rxjs';
-
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+
+import { EditorService } from './editor.service';
 
 @Component({
 	selector: 'app-editor',
@@ -9,30 +9,29 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 	encapsulation: ViewEncapsulation.None,
 })
 export class EditorComponent implements OnInit {
-	private selectedSource = new BehaviorSubject<number>(0);
 	selected = 0;
 
-	constructor() {}
+	constructor(private editorService: EditorService) {}
 
 	ngOnInit(): void {
-		this.selectedSource.subscribe((e) => {
+		this.editorService.selected.subscribe((e) => {
 			this.selected = e;
 		});
 	}
 
 	clickPreview(): void {
-		this.selectedSource.next(1);
+		this.editorService.selected.next(1);
 	}
 
 	clickAdd(): void {
-		this.selectedSource.next(2);
+		this.editorService.selected.next(2);
 	}
 
 	clickMusic(): void {
-		this.selectedSource.next(3);
+		this.editorService.selected.next(3);
 	}
 
 	clickRestore(): void {
-		this.selectedSource.next(4);
+		this.editorService.selected.next(4);
 	}
 }

@@ -1,24 +1,32 @@
 <div class="body">
 	<div class="main" [class.mat-elevation-z2]="true">
 		<div class="panel">
-			<button mat-icon-button disableRipple>
+			<button mat-icon-button disableRipple class="button">
 				<mat-icon>play_circle_outline</mat-icon>
 			</button>
-			<button mat-icon-button disableRipple>
+			<button mat-icon-button disableRipple class="button">
 				<mat-icon>add</mat-icon>
 			</button>
-			<button mat-icon-button disableRipple>
+			<button mat-icon-button disableRipple class="button">
 				<mat-icon>music_note</mat-icon>
 			</button>
-			<button mat-icon-button disableRipple>
+			<button mat-icon-button disableRipple class="button">
 				<mat-icon>restore</mat-icon>
 			</button>
 			<div style="flex-grow: 1"></div>
 			<button mat-flat-button>Publish & Checkout</button>
 		</div>
-		<div class="view"></div>
+		<div class="view">
+			<div class="box">
+				<button mat-icon-button disableRipple>
+					<mat-icon>add</mat-icon>
+				</button>
+			</div>
+		</div>
 		<div class="footer">
-			<p style="font-size: large; margin: 0">Total Time: 00:16</p>
+			<p style="font-size: large; margin: 0">
+				Total Time <span style="color: red">00:16</span>
+			</p>
 		</div>
 	</div>
 </div>

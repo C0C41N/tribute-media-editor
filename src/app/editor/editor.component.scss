@@ -12,7 +12,7 @@ $action-color: skyblue;
 		border-radius: $border-radius;
 		display: flex;
 		flex-direction: column;
-		height: 600px;
+		height: 380px;
 		width: 90%;
 
 		.panel {
@@ -27,14 +27,38 @@ $action-color: skyblue;
 				margin: 0 15px;
 
 				.mat-icon {
-					transform: scale(2);
+					transition: 0.25s;
+					transform: scale(2) translateY(0);
 					color: white;
 				}
+			}
+
+			.button :hover {
+				transform: scale(2) translateY(-1px);
+				color: rgba(0, 0, 0, 0.3);
 			}
 		}
 
 		.view {
+			align-items: center;
+			display: flex;
 			flex-grow: 1;
+			padding: 20px;
+
+			.box {
+				align-items: center;
+				background-color: $action-color;
+				border-radius: 15px;
+				display: flex;
+				height: 200px;
+				justify-content: center;
+				width: 200px;
+
+				.mat-icon {
+					transform: scale(6);
+					color: white;
+				}
+			}
 		}
 
 		.footer {

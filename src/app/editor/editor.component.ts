@@ -16,7 +16,6 @@ export class EditorComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.editorService.selected.subscribe((e) => {
-			console.log('selected: ', e);
 			this.selected = e;
 		});
 	}

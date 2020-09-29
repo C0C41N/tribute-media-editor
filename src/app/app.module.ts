@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { EditorService } from './shared/editor.service';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -14,6 +15,7 @@ import { AppComponent } from './app.component';
 		BrowserAnimationsModule,
 		HttpClientModule,
 	],
+	providers: [EditorService],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

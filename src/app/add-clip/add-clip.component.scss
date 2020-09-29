@@ -1,0 +1,21 @@
+$action-color: skyblue;
+
+.container {
+	background-color: $action-color;
+	// display: flex;
+	height: 100px;
+	position: relative;
+	width: 100%;
+
+	.actions {
+		display: flex;
+	}
+
+	.close {
+		$offset: 10px;
+		color: white;
+		position: absolute;
+		right: $offset;
+		top: $offset;
+	}
+}

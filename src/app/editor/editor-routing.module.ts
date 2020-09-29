@@ -8,6 +8,10 @@ const routes: Routes = [
 		path: '',
 		component: EditorComponent,
 	},
+	{
+		path: 'add-clip',
+		loadChildren,
+	},
 ];
 
 @NgModule({

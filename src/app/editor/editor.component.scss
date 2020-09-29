@@ -13,32 +13,39 @@ $action-color: skyblue;
 		display: flex;
 		flex-direction: column;
 		width: 90%;
+		height: auto;
 
 		.panel {
 			align-items: center;
 			background-color: $action-color;
 			border-radius: $border-radius $border-radius 0 0;
 			display: flex;
-			height: 72px;
 			width: 100%;
 
-			button {
-				margin: 0 15px;
+			.button {
+				$size: 48px;
+				$ripple: $size * 1.5;
+				color: white;
+				height: $ripple;
+				margin: 10px 15px;
+				width: $ripple;
+				transform: translateY(0);
 
-				.mat-icon {
+				mat-icon {
+					font-size: $size;
+					width: $size;
+					line-height: $size;
+					height: $size;
 					transition: 0.25s;
-					transform: scale(2) translateY(0);
-					color: white;
 				}
 			}
 
 			.button :hover {
-				transform: scale(2) translateY(-1px);
-				color: rgba(0, 0, 0, 0.3);
+				transform: translateY(-1px);
 			}
 
 			.selected {
-				color: rgba(0, 0, 0, 0.3) !important;
+				color: grey !important;
 			}
 		}
 

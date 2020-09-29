@@ -16,27 +16,28 @@ export class EditorComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.editorService.selected.subscribe((e) => {
+			console.log('selected: ', e);
 			this.selected = e;
 		});
 	}
 
 	clickPreview(): void {
-		this.editorService.selected.next(1);
+		this.editorService.setSelected(1);
 		this.router.navigate(['preview']);
 	}
 
 	clickAdd(): void {
-		this.editorService.selected.next(2);
+		this.editorService.setSelected(2);
 		this.router.navigate(['add-clip']);
 	}
 
 	clickMusic(): void {
-		this.editorService.selected.next(3);
+		this.editorService.setSelected(3);
 		this.router.navigate(['music']);
 	}
 
 	clickRestore(): void {
-		this.editorService.selected.next(4);
+		this.editorService.setSelected(4);
 		this.router.navigate(['restore']);
 	}
 }

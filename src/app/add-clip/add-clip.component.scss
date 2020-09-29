@@ -1,14 +1,31 @@
-$action-color: skyblue;
+$action-color: grey;
 
 .container {
+	align-items: center;
 	background-color: $action-color;
-	// display: flex;
-	height: 100px;
+	display: flex;
+	justify-content: center;
 	position: relative;
 	width: 100%;
 
 	.actions {
 		display: flex;
+
+		button {
+			$size: 48px;
+			$ripple: $size * 1.5;
+			color: white;
+			height: $ripple;
+			margin: 20px 10px;
+			width: $ripple;
+
+			mat-icon {
+				font-size: $size;
+				width: $size;
+				line-height: $size;
+				height: $size;
+			}
+		}
 	}
 
 	.close {

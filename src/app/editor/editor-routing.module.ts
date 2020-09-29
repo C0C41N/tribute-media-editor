@@ -5,12 +5,30 @@ import { EditorComponent } from './editor.component';
 
 const routes: Routes = [
 	{
-		path: '',
+		path: 'edit',
 		component: EditorComponent,
+		children: [
+			{
+				path: 'preview',
+			},
+			{
+				path: 'add-clip',
+				loadChildren: () =>
+					import('../add-clip/add-clip.module').then(
+						({ AddClipModule }) => AddClipModule
+					),
+			},
+			{
+				path: 'music',
+			},
+			{
+				path: 'restore',
+			},
+		],
 	},
 	{
-		path: 'add-clip',
-		loadChildren,
+		path: '',
+		redirectTo: 'edit',
 	},
 ];
 

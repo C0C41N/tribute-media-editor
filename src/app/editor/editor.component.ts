@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { EditorService } from './editor.service';
+import { EditorService } from '../shared/editor.service';
 
 @Component({
 	selector: 'app-editor',
@@ -11,7 +12,7 @@ import { EditorService } from './editor.service';
 export class EditorComponent implements OnInit {
 	selected = 0;
 
-	constructor(private editorService: EditorService) {}
+	constructor(private editorService: EditorService, private router: Router) {}
 
 	ngOnInit(): void {
 		this.editorService.selected.subscribe((e) => {
@@ -21,17 +22,21 @@ export class EditorComponent implements OnInit {
 
 	clickPreview(): void {
 		this.editorService.selected.next(1);
+		this.router.navigate(['preview']);
 	}
 
 	clickAdd(): void {
 		this.editorService.selected.next(2);
+		this.router.navigate(['add-clip']);
 	}
 
 	clickMusic(): void {
 		this.editorService.selected.next(3);
+		this.router.navigate(['music']);
 	}
 
 	clickRestore(): void {
 		this.editorService.selected.next(4);
+		this.router.navigate(['restore']);
 	}
 }

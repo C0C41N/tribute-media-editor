@@ -1,19 +1,22 @@
 <div class="container">
-	<button class="close" mat-icon-button (click)="clickClose()">
-		<mat-icon>close</mat-icon>
-	</button>
-	<div class="actions">
-		<button mat-icon-button>
-			<mat-icon>videocam</mat-icon>
+	<div class="main">
+		<button class="close" mat-icon-button (click)="clickClose()">
+			<mat-icon>close</mat-icon>
 		</button>
-		<button mat-icon-button>
-			<mat-icon>title</mat-icon>
-		</button>
-		<button mat-icon-button>
-			<mat-icon>image</mat-icon>
-		</button>
-		<button mat-icon-button>
-			<mat-icon>blur_on</mat-icon>
-		</button>
+		<div class="actions">
+			<button mat-icon-button (click)="clickVideo()">
+				<mat-icon>videocam</mat-icon>
+			</button>
+			<button mat-icon-button>
+				<mat-icon>title</mat-icon>
+			</button>
+			<button mat-icon-button>
+				<mat-icon>image</mat-icon>
+			</button>
+			<button mat-icon-button>
+				<mat-icon>blur_on</mat-icon>
+			</button>
+		</div>
 	</div>
+	<router-outlet></router-outlet>
 </div>

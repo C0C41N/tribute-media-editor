@@ -17,4 +17,8 @@ export class AddClipComponent implements OnInit {
 		this.editorService.setSelected(0);
 		this.router.navigate(['edit']);
 	}
+
+	clickVideo(): void {
+		this.router.navigate(['video']);
+	}
 }

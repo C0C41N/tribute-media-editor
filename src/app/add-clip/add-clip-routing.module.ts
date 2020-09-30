@@ -7,6 +7,13 @@ const routes: Routes = [
 	{
 		path: '',
 		component: AddClipComponent,
+		children: [
+			{
+				path: 'video',
+				loadChildren: () =>
+					import('./video/video.module').then(({ VideoModule }) => VideoModule),
+			},
+		],
 	},
 ];
 

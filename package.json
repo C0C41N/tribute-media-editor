@@ -21,7 +21,6 @@
     "@angular/platform-browser": "~10.0.14",
     "@angular/platform-browser-dynamic": "~10.0.14",
     "@angular/router": "~10.0.14",
-    "@ngxs/store": "^3.7.0",
     "angular-material": "^1.2.1",
     "firebase": "^7.21.1",
     "rxjs": "~6.5.5",

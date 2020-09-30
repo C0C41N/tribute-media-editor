@@ -1,38 +1,41 @@
 $action-color: grey;
 
 .container {
-	align-items: center;
-	background-color: $action-color;
-	display: flex;
-	justify-content: center;
-	position: relative;
-	width: 100%;
-
-	.actions {
+	.main {
+		align-items: center;
+		background-color: $action-color;
+		border-radius: 0;
 		display: flex;
+		justify-content: center;
+		position: relative;
+		width: 100%;
 
-		button {
-			$size: 48px;
-			$ripple: $size * 1.5;
-			color: white;
-			height: $ripple;
-			margin: 20px 10px;
-			width: $ripple;
+		.actions {
+			display: flex;
 
-			mat-icon {
-				font-size: $size;
-				width: $size;
-				line-height: $size;
-				height: $size;
+			button {
+				$size: 48px;
+				$ripple: $size * 1.5;
+				color: white;
+				height: $ripple;
+				margin: 20px 10px;
+				width: $ripple;
+
+				mat-icon {
+					font-size: $size;
+					width: $size;
+					line-height: $size;
+					height: $size;
+				}
 			}
 		}
-	}
 
-	.close {
-		$offset: 10px;
-		color: white;
-		position: absolute;
-		right: $offset;
-		top: $offset;
+		.close {
+			$offset: 10px;
+			color: white;
+			position: absolute;
+			right: $offset;
+			top: $offset;
+		}
 	}
 }

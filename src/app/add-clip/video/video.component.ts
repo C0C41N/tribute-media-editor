@@ -6,7 +6,17 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./video.component.scss'],
 })
 export class VideoComponent implements OnInit {
+	progress: string;
+
 	constructor() {}
 
 	ngOnInit(): void {}
+
+	InputChange(files: FileList): void {
+		console.log(files.item(0));
+	}
+
+	UploadClick(): void {
+		document.getElementById('InputVideo').click();
+	}
 }

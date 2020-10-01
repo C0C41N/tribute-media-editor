@@ -1,0 +1,31 @@
+.main {
+	align-items: center;
+	background-color: skyblue;
+	border-radius: 0;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+
+	.progress {
+		color: white;
+		font-size: 20px;
+		height: 20px;
+		margin: -30px 0 10px 9px;
+	}
+
+	button {
+		$size: 48px;
+		$ripple: $size * 1.5;
+		color: white;
+		height: $ripple;
+		margin: 20px 10px;
+		width: $ripple;
+
+		mat-icon {
+			font-size: $size;
+			width: $size;
+			line-height: $size;
+			height: $size;
+		}
+	}
+}

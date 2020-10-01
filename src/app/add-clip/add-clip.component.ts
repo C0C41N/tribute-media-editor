@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { EditorService } from '../core/editor.service';
 
@@ -9,7 +9,11 @@ import { EditorService } from '../core/editor.service';
 	styleUrls: ['./add-clip.component.scss'],
 })
 export class AddClipComponent implements OnInit {
-	constructor(private router: Router, private editorService: EditorService) {}
+	constructor(
+		private router: Router,
+		private route: ActivatedRoute,
+		private editorService: EditorService
+	) {}
 
 	ngOnInit(): void {}
 
@@ -19,6 +23,6 @@ export class AddClipComponent implements OnInit {
 	}
 
 	clickVideo(): void {
-		this.router.navigate(['video']);
+		this.router.navigate(['video'], { relativeTo: this.route });
 	}
 }

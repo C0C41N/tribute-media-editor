@@ -1,1 +1,12 @@
-<p>video works!</p>
+<div class="main">
+	<input
+		type="file"
+		id="InputVideo"
+		(change)="InputChange($event.target.files)"
+		style="visibility: hidden; position: absolute"
+	/>
+	<button mat-icon-button (click)="UploadClick()">
+		<mat-icon>cloud_upload</mat-icon>
+	</button>
+	<div class="progress">{{ progress }}</div>
+</div>

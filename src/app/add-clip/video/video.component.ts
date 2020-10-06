@@ -3,6 +3,9 @@ import { finalize, map } from 'rxjs/operators';
 
 import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
+import { Router } from '@angular/router';
+
+import { EditorService } from '../../core/editor.service';
 
 @Component({
 	selector: 'app-video',
@@ -14,9 +17,15 @@ export class VideoComponent implements OnInit {
 	progress: Observable<string>;
 	downloadUrl: string;
 
-	constructor(private storage: AngularFireStorage) {}
+	constructor(
+		private storage: AngularFireStorage,
+		private service: EditorService,
+		private router: Router
+	) {}
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+		this.service.vidUrl.subscribe((e) => console.log({ vidUrl: e }));
+	}
 
 	InputChange(files: FileList): void {
 		this.upload(files);
@@ -42,7 +51,8 @@ export class VideoComponent implements OnInit {
 			.pipe(
 				finalize(async () => {
 					this.downloadUrl = await ref.getDownloadURL().toPromise();
-					console.log({ downloadURL: this.downloadUrl });
+					this.service.pushVidUrl(this.downloadUrl);
+					this.router.navigate(['add-clip']);
 				})
 			)
 			.subscribe();

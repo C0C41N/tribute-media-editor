@@ -13,6 +13,15 @@ const routes: Routes = [
 				loadChildren: () =>
 					import('./video/video.module').then(({ VideoModule }) => VideoModule),
 			},
+			{
+				path: 'text',
+			},
+			{
+				path: 'image',
+			},
+			{
+				path: 'transition',
+			},
 		],
 	},
 ];

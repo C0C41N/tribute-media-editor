@@ -25,4 +25,16 @@ export class AddClipComponent implements OnInit {
 	clickVideo(): void {
 		this.router.navigate(['video'], { relativeTo: this.route });
 	}
+
+	clickText(): void {
+		this.router.navigate(['text'], { relativeTo: this.route });
+	}
+
+	clickImage(): void {
+		this.router.navigate(['image'], { relativeTo: this.route });
+	}
+
+	clickTransition(): void {
+		this.router.navigate(['transition'], { relativeTo: this.route });
+	}
 }

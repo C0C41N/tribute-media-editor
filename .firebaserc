@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "editor-concept"
+  },
+  "targets": {
+    "editor-concept": {
+      "hosting": {
+        "Tribute-Media-Editor": [
+          "editor-concept"
+        ]
+      }
+    }
   }
 }

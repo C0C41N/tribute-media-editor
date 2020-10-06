@@ -5,8 +5,8 @@
 		(change)="InputChange($event.target.files)"
 		style="visibility: hidden; position: absolute"
 	/>
-	<button mat-icon-button (click)="UploadClick()">
+	<button mat-icon-button (click)="clickUpload()">
 		<mat-icon>cloud_upload</mat-icon>
 	</button>
-	<div class="progress">{{ progress }}</div>
+	<div class="progress">{{ progress | async }}</div>
 </div>

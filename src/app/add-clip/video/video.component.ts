@@ -23,9 +23,7 @@ export class VideoComponent implements OnInit {
 		private router: Router
 	) {}
 
-	ngOnInit(): void {
-		this.service.vidUrl.subscribe((e) => console.log({ vidUrl: e }));
-	}
+	ngOnInit(): void {}
 
 	InputChange(files: FileList): void {
 		this.upload(files);

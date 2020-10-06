@@ -1,6 +1,17 @@
+<video
+	*ngFor="let url of vids"
+	height="200"
+	width="200"
+	[src]="url"
+	autoplay
+	muted
+	loop
+></video>
 <canvas
 	*ngFor="let url of vids"
 	height="200"
 	width="200"
-	style="background-color: antiquewhite"
-></canvas>
+	style="margin-right: 20px"
+>
+	{{ init(url) }}
+</canvas>

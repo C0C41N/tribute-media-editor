@@ -1,0 +1,21 @@
+.view {
+	align-items: center;
+	display: flex;
+	flex-grow: 1;
+	padding: 20px;
+
+	.box {
+		align-items: center;
+		background-color: grey;
+		border-radius: 15px;
+		display: flex;
+		height: 200px;
+		justify-content: center;
+		width: 200px;
+
+		.mat-icon {
+			transform: scale(6);
+			color: white;
+		}
+	}
+}

@@ -1,6 +1,7 @@
 .main {
 	align-items: center;
-	background-color: skyblue;
+	background-color: white;
+	border-bottom: solid lightgrey 1px;
 	border-radius: 0;
 	display: flex;
 	justify-content: center;
@@ -16,7 +17,7 @@
 	button {
 		$size: 48px;
 		$ripple: $size * 1.5;
-		color: white;
+		color: grey;
 		height: $ripple;
 		margin: 20px 10px;
 		width: $ripple;

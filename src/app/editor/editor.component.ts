@@ -25,11 +25,6 @@ export class EditorComponent implements OnInit {
 		this.router.navigate(['preview']);
 	}
 
-	clickAdd(): void {
-		this.service.setSelected(2);
-		this.router.navigate(['add-clip']);
-	}
-
 	clickMusic(): void {
 		this.service.setSelected(3);
 		this.router.navigate(['music']);
@@ -38,5 +33,9 @@ export class EditorComponent implements OnInit {
 	clickRestore(): void {
 		this.service.setSelected(4);
 		this.router.navigate(['restore']);
+	}
+
+	clickAdd(): void {
+		this.service.clickAdd();
 	}
 }

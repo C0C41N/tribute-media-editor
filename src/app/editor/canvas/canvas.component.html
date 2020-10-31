@@ -1,17 +1,13 @@
-<video
-	*ngFor="let url of vids"
-	height="200"
-	width="200"
-	[src]="url"
-	autoplay
-	muted
-	loop
-></video>
-<canvas
-	*ngFor="let url of vids"
-	height="200"
-	width="200"
-	style="margin-right: 20px"
->
-	{{ init(url) }}
-</canvas>
+<div style="display: flex; flex-direction: column">
+	<canvas
+		#canvas
+		height="200"
+		width="200"
+		style="margin: 0 20px 0 20px"
+	></canvas>
+	<div *ngFor="let url of vids">
+		<video #video height="200" width="200" preload="auto" loop autoplay>
+			<source [src]="url" type="video/mp4" />
+		</video>
+	</div>
+</div>

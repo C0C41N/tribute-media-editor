@@ -19,18 +19,11 @@
 			<button mat-flat-button style="margin: 0 20px">Publish & Checkout</button>
 		</div>
 		<router-outlet></router-outlet>
-		<div class="view">
-			<app-canvas></app-canvas>
-			<div class="box">
-				<button mat-icon-button disableRipple (click)="clickAdd()">
-					<mat-icon>add</mat-icon>
-				</button>
-			</div>
-		</div>
-		<div class="footer">
+		<app-view></app-view>
+		<!-- <div class="footer">
 			<p style="font-size: large; margin: 0">
 				Total Time <span style="color: red">00:00</span>
 			</p>
-		</div>
+		</div> -->
 	</div>
 </div>

@@ -1,6 +1,7 @@
 import { BehaviorSubject } from 'rxjs';
 
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class EditorService {
@@ -10,7 +11,7 @@ export class EditorService {
 	private vidUrlSource = new BehaviorSubject<string[]>([]);
 	vidUrl = this.vidUrlSource.asObservable();
 
-	constructor() {}
+	constructor(private router: Router) {}
 
 	setSelected(val: number): void {
 		this.selectedSource.next(val);
@@ -18,5 +19,10 @@ export class EditorService {
 
 	pushVidUrl(val: string): void {
 		this.vidUrlSource.next([...this.vidUrlSource.value, val]);
+	}
+
+	clickAdd(): void {
+		this.setSelected(2);
+		this.router.navigate(['add-clip']);
 	}
 }

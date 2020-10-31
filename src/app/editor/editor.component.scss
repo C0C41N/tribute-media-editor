@@ -1,5 +1,5 @@
 $border-radius: 10px;
-$action-color: skyblue;
+$action-color: white;
 
 .body {
 	align-items: center;
@@ -25,7 +25,7 @@ $action-color: skyblue;
 			.button {
 				$size: 48px;
 				$ripple: $size * 1.5;
-				color: white;
+				color: grey;
 				height: $ripple;
 				margin: 10px 15px;
 				width: $ripple;
@@ -46,28 +46,6 @@ $action-color: skyblue;
 
 			.selected {
 				color: grey !important;
-			}
-		}
-
-		.view {
-			align-items: center;
-			display: flex;
-			flex-grow: 1;
-			padding: 20px;
-
-			.box {
-				align-items: center;
-				background-color: $action-color;
-				border-radius: 15px;
-				display: flex;
-				height: 200px;
-				justify-content: center;
-				width: 200px;
-
-				.mat-icon {
-					transform: scale(6);
-					color: white;
-				}
 			}
 		}
 

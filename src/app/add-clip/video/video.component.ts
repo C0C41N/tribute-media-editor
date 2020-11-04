@@ -1,11 +1,10 @@
 import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
+import { EditorService } from 'src/app/core/editor.service';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 import { Router } from '@angular/router';
-
-import { EditorService } from '../../core/editor.service';
 
 @Component({
 	selector: 'app-video',
@@ -17,6 +16,9 @@ export class VideoComponent implements OnInit {
 	progress: Observable<string>;
 	downloadUrl: string;
 
+	@ViewChild('inputVideo')
+	inputVideo: ElementRef<HTMLInputElement>;
+
 	constructor(
 		private storage: AngularFireStorage,
 		private service: EditorService,
@@ -25,12 +27,13 @@ export class VideoComponent implements OnInit {
 
 	ngOnInit(): void {}
 
-	InputChange(files: FileList): void {
-		this.upload(files);
+	clickUpload(): void {
+		// Send req to local host
+		// this.inputVideo.nativeElement.click();
 	}
 
-	clickUpload(): void {
-		document.getElementById('InputVideo').click();
+	InputChange(files: FileList): void {
+		this.upload(files);
 	}
 
 	upload(files: FileList): void {

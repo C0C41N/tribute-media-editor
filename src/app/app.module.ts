@@ -12,9 +12,9 @@ import { FirebaseModule } from './shared/firebase.module';
 	declarations: [AppComponent],
 	imports: [
 		BrowserModule,
-		BrowserAnimationsModule,
-		AppRoutingModule,
 		HttpClientModule,
+		AppRoutingModule,
+		BrowserAnimationsModule,
 		CoreModule,
 		FirebaseModule,
 	],

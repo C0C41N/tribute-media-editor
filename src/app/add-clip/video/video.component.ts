@@ -6,6 +6,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 import { Router } from '@angular/router';
 
+import { UploadService } from '../../core/upload.service';
+
 @Component({
 	selector: 'app-video',
 	templateUrl: './video.component.html',
@@ -22,13 +24,14 @@ export class VideoComponent implements OnInit {
 	constructor(
 		private storage: AngularFireStorage,
 		private service: EditorService,
-		private router: Router
+		private router: Router,
+		private uploadSvc: UploadService
 	) {}
 
 	ngOnInit(): void {}
 
 	clickUpload(): void {
-		// Send req to local host
+		this.uploadSvc.upload();
 		// this.inputVideo.nativeElement.click();
 	}
 

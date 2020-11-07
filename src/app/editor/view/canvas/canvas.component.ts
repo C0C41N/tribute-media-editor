@@ -1,4 +1,3 @@
-import { ffmpeg } from 'ffmpeg.js';
 import { combineLatest } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { EditorService } from 'src/app/core/editor.service';

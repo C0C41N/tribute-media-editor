@@ -6,7 +6,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { FirebaseModule } from './shared/firebase.module';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -16,7 +15,6 @@ import { FirebaseModule } from './shared/firebase.module';
 		AppRoutingModule,
 		BrowserAnimationsModule,
 		CoreModule,
-		FirebaseModule,
 	],
 	bootstrap: [AppComponent],
 })

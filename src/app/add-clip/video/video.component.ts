@@ -1,9 +1,9 @@
 import { Observable } from 'rxjs';
-import { finalize, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { EditorService } from 'src/app/core/editor.service';
+import { $log } from 'src/app/core/misc';
 import { UploadService } from 'src/app/core/upload.service';
 
-import { HttpEventType } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -32,15 +32,15 @@ export class VideoComponent implements OnInit {
 	}
 
 	InputChange(files: FileList): void {
-		this.uploadSvc.upload(files.item(0)).subscribe((e) => {
-			if (e.type === HttpEventType.Response) {
-				console.log('done\n' + JSON.stringify(e, null, '\t'));
-				this.router.navigate(['add-clip']);
-			}
-			if (e.type === HttpEventType.UploadProgress) {
-				const percent = Math.round((100 * e.loaded) / e.total);
-				console.log(`Progress: ${percent}%`);
-			}
+		const [progress$, response$] = this.uploadSvc.upload(files.item(0));
+
+		this.progress = progress$.pipe(
+			map(({ loaded, total }) => `${Math.round((100 * loaded) / total)}%`)
+		);
+
+		response$.subscribe((e) => {
+			console.log($log(e));
+			this.router.navigate(['add-clip']);
 		});
 	}
 }

@@ -1,4 +1,11 @@
+import { from, Observable, ObservableInput } from 'rxjs';
+import { filter } from 'rxjs/operators';
+
 export const url = 'http://localhost:3000';
+
+export function $log(e: any): void {
+	console.log(JSON.stringify(e, null, '\t'));
+}
 
 export function randomKey(len: number): string {
 	// prettier-ignore
@@ -13,4 +20,15 @@ export function randomKey(len: number): string {
 		.reduce((a: string) => {
 			return a.concat(x[Math.floor(Math.random() * x.length)]);
 		}, '');
+}
+
+export function partitionTwo<T>(
+	source: ObservableInput<T>,
+	predicate: (value: T, index: number) => boolean,
+	predicateTwo: (value: T, index: number) => boolean
+): [Observable<T>, Observable<T>] {
+	return [
+		filter(predicate)(from(source)),
+		filter(predicateTwo)(from(source)),
+	] as [Observable<T>, Observable<T>];
 }

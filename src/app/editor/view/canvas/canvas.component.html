@@ -1,13 +1,6 @@
-<div style="display: flex; flex-direction: column">
-	<canvas
-		#canvas
-		height="200"
-		width="200"
-		style="margin: 0 20px 0 20px"
-	></canvas>
-	<div *ngFor="let url of vids">
-		<video #video height="200" width="200" preload="auto" loop autoplay>
-			<source [src]="url" type="video/mp4" />
-		</video>
+<div id="main">
+	<!-- <canvas #canvas height="200" width="200"></canvas> -->
+	<div *ngFor="let url of thumbnails">
+		<img #img [src]="url" height="200" width="200" />
 	</div>
 </div>

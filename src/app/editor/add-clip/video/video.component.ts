@@ -1,7 +1,6 @@
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { EditorService } from 'src/app/core/editor.service';
-import { $log } from 'src/app/core/misc';
 import { UploadService } from 'src/app/core/upload.service';
 
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
@@ -39,7 +38,8 @@ export class VideoComponent implements OnInit {
 		);
 
 		response$.subscribe((e) => {
-			console.log($log(e));
+			const { url } = e.body as any;
+			this.service.pushVidUrl(url);
 			this.router.navigate(['add-clip']);
 		});
 	}

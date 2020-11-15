@@ -1,5 +1,4 @@
 import { combineLatest } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { EditorService } from 'src/app/core/editor.service';
 
 import { AfterViewInit, Component, OnInit, QueryList, ViewChildren } from '@angular/core';
@@ -21,20 +20,16 @@ export class CanvasComponent implements OnInit, AfterViewInit {
 	constructor(private service: EditorService) {}
 
 	ngOnInit(): void {
-		this.service.vidUrl
-			.pipe(
-				tap((e) => {
-					this.vids = e;
-					if (e[0]) {
-						console.log('beforeFetch');
-						fetch(e[0]).then((res) => {
-							console.log('fetch', e[0]);
-							res.arrayBuffer().then((b) => console.log('bin', b));
-						});
-					}
-				})
-			)
-			.subscribe();
+		this.service.vidUrl.subscribe((e) => {
+			this.vids = e;
+			if (e[0]) {
+				console.log('beforeFetch');
+				fetch(e[0]).then((res) => {
+					console.log('fetch', e[0]);
+					res.arrayBuffer().then((b) => console.log('bin', b));
+				});
+			}
+		});
 	}
 
 	ngAfterViewInit(): void {

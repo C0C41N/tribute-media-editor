@@ -3,8 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpEventType, HttpProgressEvent, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { partitionTwo } from '../core/misc';
-import { randomKey, url } from './misc';
+import { partitionTwo, randomKey, url } from './misc';
 
 @Injectable()
 export class UploadService {

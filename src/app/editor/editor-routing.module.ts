@@ -14,7 +14,7 @@ const routes: Routes = [
 			{
 				path: 'add-clip',
 				loadChildren: () =>
-					import('../add-clip/add-clip.module').then(
+					import('./add-clip/add-clip.module').then(
 						({ AddClipModule }) => AddClipModule
 					),
 			},

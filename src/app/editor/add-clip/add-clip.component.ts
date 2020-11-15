@@ -1,7 +1,7 @@
+import { EditorService } from 'src/app/core/editor.service';
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
-import { EditorService } from '../core/editor.service';
 
 @Component({
 	selector: 'app-add-clip',

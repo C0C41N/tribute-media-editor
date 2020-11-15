@@ -1,25 +1,20 @@
 import { combineLatest } from 'rxjs';
 import { EditorService } from 'src/app/core/editor.service';
 
-import { AfterViewInit, Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, QueryList, ViewChildren } from '@angular/core';
 
 @Component({
 	selector: 'app-canvas',
 	templateUrl: './canvas.component.html',
 	styleUrls: ['./canvas.component.scss'],
 })
-export class CanvasComponent implements OnInit, AfterViewInit {
+export class CanvasComponent implements AfterViewInit {
 	thumbnails: string[];
 
-	@ViewChildren('video')
-	video: QueryList<HTMLVideoElement>;
-
-	@ViewChildren('canvas')
-	canvas: QueryList<HTMLCanvasElement>;
+	@ViewChildren('img')
+	video: QueryList<HTMLImageElement>;
 
 	constructor(private svc: EditorService) {}
-
-	ngOnInit(): void {}
 
 	ngAfterViewInit(): void {}
 }

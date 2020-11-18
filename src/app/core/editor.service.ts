@@ -11,6 +11,9 @@ export class EditorService {
 	private vidUrlSource = new BehaviorSubject<string[]>([]);
 	vidUrl = this.vidUrlSource.asObservable();
 
+	private thumbUrlSource = new BehaviorSubject<string[]>([]);
+	thumbUrl = this.thumbUrlSource.asObservable();
+
 	constructor(private router: Router) {}
 
 	setSelected(val: number): void {
@@ -19,6 +22,10 @@ export class EditorService {
 
 	pushVidUrl(val: string): void {
 		this.vidUrlSource.next([...this.vidUrlSource.value, val]);
+	}
+
+	pushThumbUrl(val: string): void {
+		this.thumbUrlSource.next([...this.thumbUrlSource.value, val]);
 	}
 
 	clickAdd(): void {

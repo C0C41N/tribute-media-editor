@@ -19,7 +19,7 @@ export class VideoComponent implements OnInit {
 	inputVideo: ElementRef<HTMLInputElement>;
 
 	constructor(
-		private service: EditorService,
+		private svc: EditorService,
 		private router: Router,
 		private uploadSvc: UploadService
 	) {}
@@ -39,7 +39,10 @@ export class VideoComponent implements OnInit {
 
 		response$.subscribe((e) => {
 			const { url } = e.body as any;
-			this.service.pushVidUrl(url);
+
+			this.svc.pushVidUrl(url[0]);
+			this.svc.pushThumbUrl(url[1]);
+
 			this.router.navigate(['add-clip']);
 		});
 	}

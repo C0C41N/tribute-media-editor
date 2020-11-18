@@ -21,6 +21,7 @@
 		"@angular/platform-browser": "~10.0.14",
 		"@angular/platform-browser-dynamic": "~10.0.14",
 		"@angular/router": "~10.0.14",
+		"@ffmpeg/ffmpeg": "^0.9.5",
 		"angular-material": "^1.2.1",
 		"rxjs": "~6.5.5",
 		"tslib": "^2.0.0",

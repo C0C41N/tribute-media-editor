@@ -1,14 +1,13 @@
-import { combineLatest } from 'rxjs';
 import { EditorService } from 'src/app/core/editor.service';
 
-import { AfterViewInit, Component, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 
 @Component({
 	selector: 'app-canvas',
 	templateUrl: './canvas.component.html',
 	styleUrls: ['./canvas.component.scss'],
 })
-export class CanvasComponent implements AfterViewInit {
+export class CanvasComponent implements AfterViewInit, OnInit {
 	thumbnails: string[];
 
 	@ViewChildren('img')
@@ -17,4 +16,10 @@ export class CanvasComponent implements AfterViewInit {
 	constructor(private svc: EditorService) {}
 
 	ngAfterViewInit(): void {}
+
+	ngOnInit(): void {
+		this.svc.thumbUrl.subscribe((e) => {
+			this.thumbnails = e;
+		});
+	}
 }

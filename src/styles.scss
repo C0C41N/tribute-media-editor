@@ -1,22 +1,25 @@
 @import "~@angular/material/theming";
-@include mat-core();
 
-$Tribute-Media-Editor-primary: mat-palette($mat-indigo);
-$Tribute-Media-Editor-accent: mat-palette($mat-pink, A200, A100, A400);
+$typography: mat-typography-config(
+	$font-family: "Montserrat",
+);
 
-$Tribute-Media-Editor-warn: mat-palette($mat-red);
+$primary: mat-palette($mat-grey, 800, 400, 200);
+$accent: mat-palette($mat-pink, A200, A100, A400);
+$warn: mat-palette($mat-red);
 
-$Tribute-Media-Editor-theme: mat-light-theme(
+$theme: mat-light-theme(
 	(
 		color: (
-			primary: $Tribute-Media-Editor-primary,
-			accent: $Tribute-Media-Editor-accent,
-			warn: $Tribute-Media-Editor-warn,
+			primary: $primary,
+			accent: $accent,
+			warn: $warn,
 		),
 	)
 );
 
-@include angular-material-theme($Tribute-Media-Editor-theme);
+@include mat-core($typography);
+@include angular-material-theme($theme);
 
 html,
 body {
@@ -25,7 +28,6 @@ body {
 
 body {
 	margin: 0;
-	font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 ::-webkit-scrollbar {

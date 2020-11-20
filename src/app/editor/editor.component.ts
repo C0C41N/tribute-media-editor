@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { EditorService } from '../core/editor.service';
+import { FFmpegService } from '../core/ffmpeg.service';
 
 @Component({
 	selector: 'app-editor',
@@ -10,11 +11,20 @@ import { EditorService } from '../core/editor.service';
 	encapsulation: ViewEncapsulation.None,
 })
 export class EditorComponent implements OnInit {
+	loaded = false;
 	selected = 0;
 
-	constructor(private service: EditorService, private router: Router) {}
+	constructor(
+		private service: EditorService,
+		private router: Router,
+		private ffmpegSvc: FFmpegService
+	) {}
 
 	ngOnInit(): void {
+		this.ffmpegSvc.loaded.subscribe((e) => {
+			this.loaded = true;
+		});
+
 		this.service.selected.subscribe((e) => {
 			this.selected = e;
 		});

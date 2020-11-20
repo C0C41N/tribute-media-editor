@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 
-import { ApiService } from './api.service';
 import { EditorService } from './editor.service';
-import { UploadService } from './upload.service';
+import { FFmpegService } from './ffmpeg.service';
 
 @NgModule({
-	providers: [EditorService, UploadService, ApiService],
+	providers: [EditorService, FFmpegService],
 })
 export class CoreModule {}

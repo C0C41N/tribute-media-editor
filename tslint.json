@@ -5,6 +5,7 @@
 			"options": ["parameters", "statements"]
 		},
 		"array-type": false,
+		"arrow-parens": "as-needed",
 		"arrow-return-shorthand": true,
 		"curly": true,
 		"deprecation": {

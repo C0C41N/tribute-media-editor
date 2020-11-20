@@ -22,7 +22,24 @@ html,
 body {
 	height: 100%;
 }
+
 body {
 	margin: 0;
 	font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+::-webkit-scrollbar {
+	width: 3px;
+}
+
+::-webkit-scrollbar-track {
+	background: #00000000;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #80808080;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #4e4e4e;
 }

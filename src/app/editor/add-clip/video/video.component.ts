@@ -1,9 +1,10 @@
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { EditorService } from 'src/app/core/editor.service';
-import { UploadService } from 'src/app/core/upload.service';
+import { FFmpegService } from 'src/app/core/ffmpeg.service';
+import { $log } from 'src/app/core/misc';
 
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 @Component({
@@ -21,7 +22,8 @@ export class VideoComponent implements OnInit {
 	constructor(
 		private svc: EditorService,
 		private router: Router,
-		private uploadSvc: UploadService
+		private ffmpegSvc: FFmpegService,
+		private sanitizer: DomSanitizer
 	) {}
 
 	ngOnInit(): void {}
@@ -30,20 +32,27 @@ export class VideoComponent implements OnInit {
 		this.inputVideo.nativeElement.click();
 	}
 
-	InputChange(files: FileList): void {
-		const [progress$, response$] = this.uploadSvc.upload(files.item(0));
+	async InputChange(files: FileList): Promise<void> {
+		const file = files.item(0);
 
-		this.progress = progress$.pipe(
-			map(({ loaded, total }) => `${Math.round((100 * loaded) / total)}%`)
-		);
+		this.svc.pushVidUrl(this.sanitize(URL.createObjectURL(file)));
+		const thumb = await this.ffmpegSvc.genThumb(file);
 
-		response$.subscribe((e) => {
-			const { url } = e.body as any;
+		const sanitizedUrl = this.sanitize(thumb);
+		this.svc.pushThumbUrl(sanitizedUrl);
+		this.svc.pushThumbUrl(sanitizedUrl);
+		this.svc.pushThumbUrl(sanitizedUrl);
+		this.svc.pushThumbUrl(sanitizedUrl);
+		this.svc.pushThumbUrl(sanitizedUrl);
+		this.svc.pushThumbUrl(sanitizedUrl);
+		this.svc.pushThumbUrl(sanitizedUrl);
+		this.svc.pushThumbUrl(sanitizedUrl);
+		this.svc.pushThumbUrl(sanitizedUrl);
+		this.svc.pushThumbUrl(sanitizedUrl);
+		this.router.navigate(['add-clip']);
+	}
 
-			this.svc.pushVidUrl(url[0]);
-			this.svc.pushThumbUrl(url[1]);
-
-			this.router.navigate(['add-clip']);
-		});
+	sanitize(url: string): SafeUrl {
+		return this.sanitizer.bypassSecurityTrustUrl(url);
 	}
 }

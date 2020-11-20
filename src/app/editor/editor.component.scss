@@ -2,18 +2,23 @@ $border-radius: 10px;
 $action-color: white;
 
 .body {
-	align-items: center;
+	// align-items: center;
 	display: flex;
 	height: 100%;
 	justify-content: center;
 	width: 100%;
 
+	.loadingContainer {
+		width: 50%;
+	}
+
 	.main {
 		border-radius: $border-radius;
-		display: flex;
-		flex-direction: column;
+		border-bottom-right-radius: 0;
+		// display: flex;
+		// flex-direction: column;
 		width: 90%;
-		height: auto;
+		// height: auto;
 
 		.panel {
 			align-items: center;

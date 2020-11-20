@@ -1,8 +1,18 @@
 #main {
-	display: flex;
-	flex-direction: column;
+	// display: flex;
+	display: grid;
+	flex-direction: row;
 
 	// canvas {
 	// 	margin: 0 20px 0 20px;
 	// }
+
+	.imgContainer {
+		align-items: center;
+		border-radius: 5px;
+		display: inline-grid;
+		height: 200px;
+		margin: 10px 10px;
+		width: 200px;
+	}
 }

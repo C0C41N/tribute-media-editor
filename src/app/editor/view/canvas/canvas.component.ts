@@ -1,6 +1,7 @@
 import { EditorService } from 'src/app/core/editor.service';
 
 import { AfterViewInit, Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { SafeUrl } from '@angular/platform-browser';
 
 @Component({
 	selector: 'app-canvas',
@@ -8,7 +9,7 @@ import { AfterViewInit, Component, OnInit, QueryList, ViewChildren } from '@angu
 	styleUrls: ['./canvas.component.scss'],
 })
 export class CanvasComponent implements AfterViewInit, OnInit {
-	thumbnails: string[];
+	thumbnails: SafeUrl[];
 
 	@ViewChildren('img')
 	video: QueryList<HTMLImageElement>;

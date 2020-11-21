@@ -1,7 +1,6 @@
 import { Observable } from 'rxjs';
 import { EditorService } from 'src/app/core/editor.service';
 import { FFmpegService } from 'src/app/core/ffmpeg.service';
-import { $log } from 'src/app/core/misc';
 
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
@@ -36,18 +35,10 @@ export class VideoComponent implements OnInit {
 		const file = files.item(0);
 
 		this.svc.pushVidUrl(this.sanitize(URL.createObjectURL(file)));
-		const thumb = await this.ffmpegSvc.genThumb(file);
 
+		const thumb = await this.ffmpegSvc.genThumb(file);
 		const sanitizedUrl = this.sanitize(thumb);
-		this.svc.pushThumbUrl(sanitizedUrl);
-		this.svc.pushThumbUrl(sanitizedUrl);
-		this.svc.pushThumbUrl(sanitizedUrl);
-		this.svc.pushThumbUrl(sanitizedUrl);
-		this.svc.pushThumbUrl(sanitizedUrl);
-		this.svc.pushThumbUrl(sanitizedUrl);
-		this.svc.pushThumbUrl(sanitizedUrl);
-		this.svc.pushThumbUrl(sanitizedUrl);
-		this.svc.pushThumbUrl(sanitizedUrl);
+
 		this.svc.pushThumbUrl(sanitizedUrl);
 		this.router.navigate(['add-clip']);
 	}

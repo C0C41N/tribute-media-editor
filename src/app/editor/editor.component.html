@@ -1,9 +1,9 @@
 <div class="body">
-	<div *ngIf="true" class="loadingContainer">
+	<div *ngIf="!loaded" class="loadingContainer">
 		<h1>Loading FFmpeg Engine...</h1>
 		<mat-progress-bar mode="indeterminate"></mat-progress-bar>
 	</div>
-	<div *ngIf="false" class="main" [class.mat-elevation-z2]="true">
+	<div *ngIf="loaded" class="main" [class.mat-elevation-z2]="true">
 		<div class="panel">
 			<button mat-icon-button class="button" (click)="clickPreview()">
 				<mat-icon [class.selected]="selected === 1"

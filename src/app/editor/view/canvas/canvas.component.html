@@ -1,6 +1,7 @@
 <div id="main">
-	<!-- <canvas #canvas height="200" width="200"></canvas> -->
-	<div>
+	<canvas #canvas [hidden]="!videos.length"></canvas>
+	<video #video [src]="first | async"></video>
+	<div *ngIf="thumbnails.length" class="imgArray">
 		<ng-container *ngFor="let url of thumbnails">
 			<div class="imgContainer" [class.mat-elevation-z2]="true">
 				<img #img [src]="url" width="200" />

@@ -1,18 +1,26 @@
 #main {
-	// display: flex;
-	display: grid;
-	flex-direction: row;
+	display: flex;
+	flex-direction: column;
 
-	// canvas {
-	// 	margin: 0 20px 0 20px;
-	// }
+	canvas {
+		align-self: center;
+		background-color: grey;
+		margin: 10px 0;
+	}
 
-	.imgContainer {
-		align-items: center;
-		border-radius: 5px;
-		display: inline-grid;
-		height: 200px;
-		margin: 10px 10px;
-		width: 200px;
+	.imgArray {
+		border-bottom: solid 1px lightgrey;
+		border-top: solid 1px lightgrey;
+		margin: 20px 0;
+		padding: 20px 0;
+
+		.imgContainer {
+			align-items: center;
+			border-radius: 5px;
+			display: inline-grid;
+			height: 200px;
+			margin: 10px 10px;
+			width: 200px;
+		}
 	}
 }

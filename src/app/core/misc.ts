@@ -1,8 +1,11 @@
-export function $log(e: any): void {
+export function $log(e: any, json: boolean = true): void {
 	if (typeof e !== 'object') {
 		e = { log: e };
 	}
-	console.log(JSON.stringify(e, null, '\t'));
+	if (json) {
+		e = JSON.stringify(e, null, '\t');
+	}
+	console.log(e);
 }
 
 export function randomKey(len: number): string {

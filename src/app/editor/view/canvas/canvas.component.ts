@@ -1,5 +1,5 @@
-import { fromEvent, partition } from 'rxjs';
-import { distinctUntilKeyChanged } from 'rxjs/operators';
+import { from, fromEvent, interval, partition } from 'rxjs';
+import { distinctUntilKeyChanged, first, timeout } from 'rxjs/operators';
 import { EditorService } from 'src/app/core/editor.service';
 import { $log } from 'src/app/core/misc';
 
@@ -24,53 +24,52 @@ export class CanvasComponent implements AfterViewInit, OnInit {
 	ctx: CanvasRenderingContext2D;
 
 	@ViewChild('canvas') canvasRef: ElementRef<HTMLCanvasElement>;
-	@ViewChildren('video') videoRef: QueryList<HTMLVideoElement>;
+	@ViewChildren('video') videoRef: QueryList<ElementRef<HTMLVideoElement>>;
 
 	constructor(private svc: EditorService) {}
 
 	ngAfterViewInit(): void {
 		this.canvas = this.canvasRef.nativeElement;
+		this.ctx = this.canvas.getContext('2d');
 
-		this.videoRef.changes
-			.pipe(distinctUntilKeyChanged('length'))
-			.subscribe((e) => $log(e.length));
+		// disable context menu
+		fromEvent(this.canvas, 'contextmenu').subscribe((e) => e.preventDefault());
+
+		// set the size of canvas on first vid
+		this.videoRef.changes.pipe(first()).subscribe(this.beforePlay);
 
 		const clicks$ = fromEvent(this.canvas, 'click');
 		const [play$, pause$] = partition(clicks$, (e, i) => i % 2 === 0);
 
-		play$.subscribe();
+		play$.subscribe(this.play);
 		pause$.subscribe();
+	}
 
-		this.svc.vidUrl
-			.pipe(
-				filter((e) => e.length > 0),
-				first(),
-				map((e) => e[0])
-			)
-			.subscribe((e) => {
-				this.video.hidden = true;
-				this.video.src = this.sanitizer.sanitize(4, e);
-			});
-		fromEvent(this.video, 'canplay').subscribe(() => {
-			this.video.play();
-			const height = this.video.videoHeight;
-			const width = this.video.videoWidth;
-			this.canvas.width = width;
-			this.canvas.height = height;
-			this.canvas.style.width = `${width}px`;
-			this.canvas.style.height = `${height}px`;
-			const step = (): void => {
-				this.ctx.drawImage(this.videoRef.nativeElement, 0, 0);
-				requestAnimationFrame(step);
-			};
+	play = (): void => {
+		this.beforePlay();
+		this.video.play();
+
+		const step = (): void => {
+			this.ctx.drawImage(this.video, 0, 0);
 			requestAnimationFrame(step);
-		});
-	}
+		};
+		requestAnimationFrame(step);
+	};
 
-	play(): void {
-		this.video = this.videoRef.toArray()[this.currentVid];
-		this.ctx = this.canvas.getContext('2d');
-	}
+	beforePlay = (x = false): void => {
+		this.video = this.videoRef.toArray()[this.currentVid].nativeElement;
+
+		const setSize = (): void => {
+			const { videoWidth, videoHeight } = this.video;
+
+			this.canvas.width = videoWidth;
+			this.canvas.height = videoHeight;
+			this.canvas.style.width = `${videoWidth}px`;
+			this.canvas.style.height = `${videoHeight}px`;
+		};
+
+		x ? fromEvent(this.video, 'canplay').subscribe(setSize) : setSize();
+	};
 
 	ngOnInit(): void {
 		this.svc.thumbUrl.subscribe((e) => {

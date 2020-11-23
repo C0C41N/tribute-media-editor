@@ -1,5 +1,5 @@
-import { from, fromEvent, interval, partition } from 'rxjs';
-import { distinctUntilKeyChanged, first, timeout } from 'rxjs/operators';
+import { animationFrameScheduler, fromEvent, interval, merge, partition, Subject } from 'rxjs';
+import { first, takeUntil } from 'rxjs/operators';
 import { EditorService } from 'src/app/core/editor.service';
 import { $log } from 'src/app/core/misc';
 
@@ -15,6 +15,7 @@ import { SafeUrl } from '@angular/platform-browser';
 })
 export class CanvasComponent implements AfterViewInit, OnInit {
 	currentVid: number = 0;
+
 	thumbnails: SafeUrl[];
 	videos: SafeUrl[];
 
@@ -22,6 +23,8 @@ export class CanvasComponent implements AfterViewInit, OnInit {
 	video: HTMLVideoElement;
 
 	ctx: CanvasRenderingContext2D;
+
+	canvasControl = new Subject<void>();
 
 	@ViewChild('canvas') canvasRef: ElementRef<HTMLCanvasElement>;
 	@ViewChildren('video') videoRef: QueryList<ElementRef<HTMLVideoElement>>;
@@ -34,26 +37,39 @@ export class CanvasComponent implements AfterViewInit, OnInit {
 
 		// disable context menu
 		fromEvent(this.canvas, 'contextmenu').subscribe((e) => e.preventDefault());
-
-		// set the size of canvas on first vid
+		// canvas play/pause on click
+		fromEvent(this.canvas, 'click').subscribe(() => this.canvasControl.next());
+		// resize canvas on first upload
 		this.videoRef.changes.pipe(first()).subscribe(this.beforePlay);
 
-		const clicks$ = fromEvent(this.canvas, 'click');
+		const clicks$ = this.canvasControl.asObservable();
 		const [play$, pause$] = partition(clicks$, (e, i) => i % 2 === 0);
 
 		play$.subscribe(this.play);
-		pause$.subscribe();
+		pause$.subscribe(this.pause);
 	}
 
 	play = (): void => {
+		$log('play');
 		this.beforePlay();
 		this.video.play();
 
-		const step = (): void => {
+		const ended$ = fromEvent(this.video, 'ended');
+		const pause$ = fromEvent(this.video, 'pause');
+		const stop$ = merge(ended$, pause$);
+
+		ended$.pipe(first()).subscribe(() => this.canvasControl.next());
+
+		const frame$ = interval(0, animationFrameScheduler).pipe(takeUntil(stop$));
+
+		frame$.subscribe(() => {
 			this.ctx.drawImage(this.video, 0, 0);
-			requestAnimationFrame(step);
-		};
-		requestAnimationFrame(step);
+		});
+	};
+
+	pause = (): void => {
+		$log('pause');
+		this.video.pause();
 	};
 
 	beforePlay = (x = false): void => {

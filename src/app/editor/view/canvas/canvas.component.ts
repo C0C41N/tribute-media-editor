@@ -1,9 +1,9 @@
 import { fromEvent, Observable } from 'rxjs';
-import { delay, filter, first, map } from 'rxjs/operators';
+import { filter, first, map } from 'rxjs/operators';
 import { EditorService } from 'src/app/core/editor.service';
 
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { SafeUrl } from '@angular/platform-browser';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
 	selector: 'app-canvas',
@@ -15,24 +15,28 @@ export class CanvasComponent implements AfterViewInit, OnInit {
 	videos: SafeUrl[];
 	canvas: HTMLCanvasElement;
 	video: HTMLVideoElement;
-	first: Observable<SafeUrl>;
 	ctx: CanvasRenderingContext2D;
 
 	@ViewChild('canvas') canvasRef: ElementRef<HTMLCanvasElement>;
 	@ViewChild('video') videoRef: ElementRef<HTMLVideoElement>;
 
-	constructor(private svc: EditorService) {}
+	constructor(private svc: EditorService, private sanitizer: DomSanitizer) {}
 
 	ngAfterViewInit(): void {
 		this.canvas = this.canvasRef.nativeElement;
 		this.video = this.videoRef.nativeElement;
 		this.ctx = this.canvas.getContext('2d');
 
-		this.first = this.svc.vidUrl.pipe(
-			filter((e) => e.length > 0),
-			first(),
-			map((e) => e[0])
-		);
+		this.svc.vidUrl
+			.pipe(
+				filter((e) => e.length > 0),
+				first(),
+				map((e) => e[0])
+			)
+			.subscribe((e) => {
+				this.video.hidden = true;
+				this.video.src = this.sanitizer.sanitize(4, e);
+			});
 
 		fromEvent(this.video, 'canplay').subscribe(() => {
 			this.video.play();

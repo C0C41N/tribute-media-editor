@@ -1,6 +1,6 @@
 <div id="main">
 	<canvas #canvas [hidden]="!videos.length"></canvas>
-	<video #video [src]="first | async"></video>
+	<video #video></video>
 	<div *ngIf="thumbnails.length" class="imgArray">
 		<ng-container *ngFor="let url of thumbnails">
 			<div class="imgContainer" [class.mat-elevation-z2]="true">

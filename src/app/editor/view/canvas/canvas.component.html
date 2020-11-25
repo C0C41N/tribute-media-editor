@@ -1,5 +1,5 @@
 <div id="main">
-	<canvas #canvas [hidden]="!videos.length"></canvas>
+	<canvas #canvas [hidden]="!videos.length" width="500"></canvas>
 	<video #video *ngFor="let url of videos" [src]="url" hidden></video>
 	<div *ngIf="thumbnails.length" class="imgArray">
 		<ng-container *ngFor="let url of thumbnails">

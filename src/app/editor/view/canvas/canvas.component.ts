@@ -50,7 +50,6 @@ export class CanvasComponent implements AfterViewInit, OnInit {
 	}
 
 	play = (): void => {
-		$log('play');
 		this.beforePlay();
 		this.video.play();
 
@@ -58,33 +57,48 @@ export class CanvasComponent implements AfterViewInit, OnInit {
 		const pause$ = fromEvent(this.video, 'pause');
 		const stop$ = merge(ended$, pause$);
 
-		ended$.pipe(first()).subscribe(() => this.canvasControl.next());
+		ended$.pipe(first()).subscribe(this.ended);
 
 		const frame$ = interval(0, animationFrameScheduler).pipe(takeUntil(stop$));
 
+		const { width, height } = this.canvas;
+
 		frame$.subscribe(() => {
-			this.ctx.drawImage(this.video, 0, 0);
+			this.ctx.drawImage(this.video, 0, 0, width, height);
 		});
 	};
 
+	beforePlay = (x = false) => {
+		this.video = this.videoRef.toArray()[this.currentVid].nativeElement;
+
+		const setSize = () => {
+			const { width } = this.canvas;
+			const { videoHeight, videoWidth } = this.video;
+
+			const hRatio = (width / videoWidth) * videoHeight;
+
+			this.canvas.height = hRatio;
+			this.canvas.style.height = `${hRatio}px`;
+		};
+
+		const asyncReady = fromEvent(this.video, 'canplay').pipe(first());
+
+		x ? asyncReady.subscribe(setSize) : setSize();
+	};
+
 	pause = (): void => {
-		$log('pause');
 		this.video.pause();
 	};
 
-	beforePlay = (x = false): void => {
-		this.video = this.videoRef.toArray()[this.currentVid].nativeElement;
-
-		const setSize = (): void => {
-			const { videoWidth, videoHeight } = this.video;
-
-			this.canvas.width = videoWidth;
-			this.canvas.height = videoHeight;
-			this.canvas.style.width = `${videoWidth}px`;
-			this.canvas.style.height = `${videoHeight}px`;
-		};
-
-		x ? fromEvent(this.video, 'canplay').subscribe(setSize) : setSize();
+	ended = (): void => {
+		// pause
+		this.canvasControl.next();
+		// check
+		this.currentVid++;
+		const wasLastVid = this.currentVid === this.videos.length;
+		// play
+		if (!wasLastVid) this.canvasControl.next();
+		if (wasLastVid) this.currentVid = 0;
 	};
 
 	ngOnInit(): void {

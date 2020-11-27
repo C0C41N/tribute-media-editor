@@ -1,5 +1,5 @@
-import { animationFrameScheduler, fromEvent, interval, merge, partition, Subject } from 'rxjs';
-import { first, takeUntil } from 'rxjs/operators';
+import { animationFrameScheduler, fromEvent, interval, Observable, partition, Subject } from 'rxjs';
+import { take, takeUntil, tap } from 'rxjs/operators';
 import { EditorService } from 'src/app/core/editor.service';
 import { $log } from 'src/app/core/misc';
 
@@ -40,7 +40,7 @@ export class CanvasComponent implements AfterViewInit, OnInit {
 		// canvas play/pause on click
 		fromEvent(this.canvas, 'click').subscribe(() => this.canvasControl.next());
 		// resize canvas on first upload
-		this.videoRef.changes.pipe(first()).subscribe(this.beforePlay);
+		this.videoRef.changes.pipe(take(1)).subscribe(this.beforePlay);
 
 		const clicks$ = this.canvasControl.asObservable();
 		const [play$, pause$] = partition(clicks$, (e, i) => i % 2 === 0);
@@ -53,13 +53,14 @@ export class CanvasComponent implements AfterViewInit, OnInit {
 		this.beforePlay();
 		this.video.play();
 
-		const ended$ = fromEvent(this.video, 'ended');
-		const pause$ = fromEvent(this.video, 'pause');
-		const stop$ = merge(ended$, pause$);
+		const pause$ = fromEvent(this.video, 'pause').pipe(take(1));
+		const ended$ = fromEvent(this.video, 'ended').pipe(
+			takeUntil(this.canvasControl)
+		);
 
-		ended$.pipe(first()).subscribe(this.ended);
+		ended$.subscribe(this.ended);
 
-		const frame$ = interval(0, animationFrameScheduler).pipe(takeUntil(stop$));
+		const frame$ = interval(0, animationFrameScheduler).pipe(takeUntil(pause$));
 
 		const { width, height } = this.canvas;
 
@@ -81,7 +82,7 @@ export class CanvasComponent implements AfterViewInit, OnInit {
 			this.canvas.style.height = `${hRatio}px`;
 		};
 
-		const asyncReady = fromEvent(this.video, 'canplay').pipe(first());
+		const asyncReady = fromEvent(this.video, 'canplay').pipe(take(1));
 
 		x ? asyncReady.subscribe(setSize) : setSize();
 	};

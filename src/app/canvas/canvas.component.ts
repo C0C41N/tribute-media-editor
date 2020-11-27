@@ -1,7 +1,6 @@
-import { animationFrameScheduler, fromEvent, interval, Observable, partition, Subject } from 'rxjs';
-import { take, takeUntil, tap } from 'rxjs/operators';
+import { animationFrameScheduler, fromEvent, interval, partition, Subject } from 'rxjs';
+import { take, takeUntil } from 'rxjs/operators';
 import { EditorService } from 'src/app/core/editor.service';
-import { $log } from 'src/app/core/misc';
 
 import {
 	AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren

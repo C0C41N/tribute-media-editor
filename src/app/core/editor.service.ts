@@ -15,6 +15,8 @@ export class EditorService {
 	private thumbUrlSource = new BehaviorSubject<SafeUrl[]>([]);
 	thumbUrl = this.thumbUrlSource.asObservable();
 
+	videosSource = new BehaviorSubject<File[]>([]);
+
 	constructor(private router: Router) {}
 
 	setSelected(val: number): void {
@@ -27,6 +29,10 @@ export class EditorService {
 
 	pushThumbUrl(val: SafeUrl): void {
 		this.thumbUrlSource.next([...this.thumbUrlSource.value, val]);
+	}
+
+	pushVideo(val: File): void {
+		this.videosSource.next([...this.videosSource.value, val]);
 	}
 
 	clickAdd(): void {

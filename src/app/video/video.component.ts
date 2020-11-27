@@ -34,6 +34,7 @@ export class VideoComponent implements OnInit {
 	async InputChange(files: FileList): Promise<void> {
 		const file = files.item(0);
 
+		this.svc.pushVideo(file);
 		this.svc.pushVidUrl(this.sanitize(URL.createObjectURL(file)));
 
 		const thumb = await this.ffmpegSvc.genThumb(file);

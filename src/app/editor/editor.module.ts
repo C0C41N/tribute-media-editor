@@ -7,9 +7,10 @@ import { NgModule } from '@angular/core';
 import { MaterialModule } from '../shared/material.module';
 import { EditorRoutingModule } from './editor-routing.module';
 import { EditorComponent } from './editor.component';
+import { ConvertComponent } from './convert.component';
 
 @NgModule({
-	declarations: [EditorComponent, CanvasComponent, ViewComponent],
+	declarations: [EditorComponent, CanvasComponent, ViewComponent, ConvertComponent],
 	imports: [CommonModule, MaterialModule, EditorRoutingModule],
 })
 export class EditorModule {}

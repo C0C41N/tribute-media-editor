@@ -11,7 +11,9 @@ const routes: Routes = [
 			{
 				path: 'video',
 				loadChildren: () =>
-					import('./video/video.module').then(({ VideoModule }) => VideoModule),
+					import('src/app/video/video.module').then(
+						({ VideoModule }) => VideoModule
+					),
 			},
 			{
 				path: 'text',
